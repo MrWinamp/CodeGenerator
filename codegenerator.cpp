@@ -25,9 +25,15 @@ string CodeGenerator::generateProgram()
     auto method =  m_factory->createMethodUnit( "testFunc4",
     "void", MethodUnit::STATIC );
 
-    method->add(m_factory->createPrintOperatorUnit(R"(Hello world!\n)"),0);
+    method->add(m_factory->createPrintOperatorUnit(R"(Hello world!\n)"));
 
     myClass->add(method, ClassUnit::PROTECTED);
+
+    myClass->add( m_factory->createMethodUnit( "testFunc5", "void", MethodUnit::STATIC), ClassUnit::PROTECTED_INTERNAL);
+
+    myClass->add( m_factory->createMethodUnit( "testFunc6", "void", MethodUnit::VIRTUAL), ClassUnit::PRIVATE_PROTECTED);
+
+    myClass->add( m_factory->createMethodUnit( "testFunc7", "shared_ptr<Unit> &", MethodUnit::VIRTUAL), ClassUnit::INTERNAL);
 
     return myClass->compile();
 }

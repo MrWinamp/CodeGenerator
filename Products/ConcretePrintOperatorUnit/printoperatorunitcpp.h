@@ -10,6 +10,10 @@ public:
         m_text = new std::string(text);
     }
 
+    ~PrintOperatorUnitCpp(){
+        delete m_text;
+    }
+
     std::string compile( unsigned int level = 0 ) const {
         return generateShift( level ) + "printf( \"" + *m_text
         + "\" );\n";

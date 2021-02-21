@@ -1,11 +1,23 @@
 #ifndef PRINTOPERATORUNITJAVA_H
 #define PRINTOPERATORUNITJAVA_H
 
+#include <Products/printoperatorunit.h>
 
-class PrintOperatorUnitJava
+class PrintOperatorUnitJava: public PrintOperatorUnit
 {
 public:
-    PrintOperatorUnitJava();
+    explicit PrintOperatorUnitJava( const std::string& text ){
+        m_text = new std::string(text);
+    }
+
+    ~PrintOperatorUnitJava(){
+        delete m_text;
+    }
+
+    std::string compile( unsigned int level = 0 ) const {
+        return generateShift( level ) + "printf( \"" + *m_text
+        + "\" );\n";
+    }
 };
 
 #endif // PRINTOPERATORUNITJAVA_H
