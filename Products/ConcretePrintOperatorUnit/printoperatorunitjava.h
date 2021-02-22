@@ -15,7 +15,7 @@ public:
     }
 
     std::string compile( unsigned int level = 0 ) const {
-        return generateShift( level ) + "printf( \"" + *m_text
+        return generateShift( level ) + "System.out.println( \"" + *m_text
         + "\" );\n";
     }
 };

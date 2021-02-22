@@ -35,5 +35,10 @@ string CodeGenerator::generateProgram()
 
     myClass->add( m_factory->createMethodUnit( "testFunc7", "shared_ptr<Unit> &", MethodUnit::VIRTUAL), ClassUnit::INTERNAL);
 
+    myClass->add( m_factory->createMethodUnit( "testFunc8", "void",
+                                                 MethodUnit::STATIC | MethodUnit::FINAL), ClassUnit::PUBLIC);
+
+    myClass->add( m_factory->createMethodUnit( "testFunc9", "void", MethodUnit::ABSTRACT), ClassUnit::PRIVATE);
+
     return myClass->compile();
 }

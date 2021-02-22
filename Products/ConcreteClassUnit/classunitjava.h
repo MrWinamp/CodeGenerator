@@ -9,7 +9,7 @@ public:
     explicit ClassUnitJava( const std::string& name ){
         m_name = new std::string(name);
         m_fields = new std::vector<Fields>;
-        m_fields->resize(ACCESS_MODIFIER.size());
+        m_fields->resize(3);
     }
 
     ~ClassUnitJava(){
@@ -19,16 +19,15 @@ public:
 
     std::string compile( unsigned int level = 0 ) const
     {
-        std::string result = generateShift( level ) + "class " + *m_name + " {\n";
+        std::string result = generateShift( level ) + "class " + *m_name + " {\n\n";
         for( size_t i = 0; i < m_fields->size(); ++i ) {
             if( (*m_fields)[ i ].empty() ) {
                 continue;
             }
-            result += ACCESS_MODIFIER[ i ] + ":\n";
+            //result += ACCESS_MODIFIER[ i ] + ":\n";
             for( const auto& f : (*m_fields)[ i ] ) {
-                result += f->compile( level + 1 );
+                result += ACCESS_MODIFIER[ i ] + f->compile( level + 1 ) + "\n";
             }
-            result += "\n";
         }
         result += generateShift( level ) + "};\n";
         return result;
